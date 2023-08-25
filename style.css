@@ -30,6 +30,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background: var(--control-color);
 }
 .wrapper {
   width: 380px;
@@ -56,6 +57,9 @@ body {
   font-size: 30px;
   color: var(--i-color);
 }
+.top-bar i:first-child {
+  margin-left: -7px;
+}
 .top-bar span {
   font-size: 30px;
   color: var(--text-color);
@@ -65,7 +69,6 @@ body {
   width: 100%;
   margin-top: 25px;
   box-shadow: 0px 6px 12px var(--lightshadow);
-  background-color: var(--blur);
   border-radius: 15px;
   overflow: hidden;
 }
@@ -85,6 +88,7 @@ body {
 .song-details .artist {
   font-size: 18px;
   opacity: 0.8;
+  line-height: 35px;
 }
 .progress-area {
   height: 5px;
@@ -95,10 +99,10 @@ body {
 }
 .progress-area .progress-bar {
   height: inherit;
+  width: 0%;
   border-radius: inherit;
   position: relative;
   background: linear-gradient(90deg, var(--pbar) 0%, var(--text-color) 100%);
-  width: 50%;
 }
 .progress-bar::before {
   content: "";
@@ -106,16 +110,19 @@ body {
   height: 12px;
   width: 12px;
   background: #000;
-  border-radius: inherit;
+  border-radius: 50%;
   top: 50%;
-  right: -5%;
+  right: -5px;
+  z-index: 2;
   transform: translateY(-50%);
   background: var(--text-color);
   opacity: 0;
   transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 .progress-area:hover .progress-bar::before {
   opacity: 1;
+  pointer-events: auto;
 }
 .progress-area .timer {
   margin-top: 2px;
@@ -154,6 +161,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .play-pause::before {
@@ -170,10 +178,9 @@ body {
   width: 43px;
   line-height: 43px;
   text-align: center;
-  border-radius: inherit;
   background-clip: text;
   background: var(--primary-color);
-  position: relative;
+  position: absolute;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -211,6 +218,7 @@ body {
 }
 .music-list ul li {
   cursor: pointer;
+  display: flex;
   list-style: none;
   color: var(--text-color);
   padding-bottom: 10px;
@@ -223,13 +231,16 @@ body {
 .music-list li .row span {
   font-size: 17px;
 }
-ul li .row p {
-  opacity: 0.8;
+.music-list ul li .row p {
+  opacity: 0.9;
 }
 ul li .audio-duration {
   font-size: 17px;
 }
-
+ul li.playing {
+  pointer-events: none;
+  color: var(--violet);
+}
 .header .row i {
   cursor: default;
 }
